@@ -1,0 +1,508 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>himanshu fitness </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i' %}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container-fluid">
+
+      <div class="row justify-content-center">
+        <div class="col-xl-9 d-flex align-items-center justify-content-between">
+          <h1 class="logo"><a href="index.html">Himanshu Fitness</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="#about">About</a></li>
+            
+              <li><a href="#portfolio">Gallery</a></li>
+              <li><a href="#pricing">Pricing & timing</a></li>
+             
+              
+              <li><a href="#contact">Contact</a></li>
+
+            </ul>
+          </nav><!-- .nav-menu -->
+
+          <a href="https://play.google.com/store/apps/details?id=com.abhinav.sbtpro&hl=en_IN&gl=US" class="get-started-btn scrollto">Download app</a>
+        </div>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-8">
+          <h1>HIMANSHU FITNESS CHALLENGE</h1>
+          <h2>The last three or four reps is what makes the muscle grow. This area of pain divides a champion from someone who is not a champion.</h2>
+          <a href="https://www.youtube.com/watch?v=Fdv3ZYAl9_M&t=29s" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+          <div class="morevideo">
+            <a href="https://www.youtube.com/channel/UCtKVSdchaoECakHNgM5t7-Q"><h1 style="color: red;
+            margin-top:-20px">
+           more video </h1></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>About Body</h2>
+          <p>दोस्तों अगर अपने आप को तरासना हैं तो खुद का Best Version बनिए और उसे लगातार निखारते रहिये| वर्कआउट से ही शरीर स्वस्थ रहता हैं जो जीवन को बड़ा देता हैं|</p>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6">
+            <div class="panel2" style="null;/*startDM*/background-color: #222222 !important;color: #eeeeee !important;/*endDM*/">
+<table id="calinputtable" width="310" style="null;/*startDM*/background-color: rgba(0, 0, 0, 0) !important;/*endDM*/">
+<form name="calform" style="null;/*startDM*/background-color: rgba(0, 0, 0, 0) !important;/*endDM*/"></form>
+<input type="hidden" name="ctype" id="ctype" value="metric" style="null;/*startDM*/background-color: rgba(0, 0, 0, 0) !important;/*endDM*/">
+<tbody style="null;/*startDM*/background-color: rgba(0, 0, 0, 0) !important;/*endDM*/"><tr style="null;/*startDM*/background-color: rgba(0, 0, 0, 0) !important;/*endDM*/">
+  <td width="70" style="null;/*startDM*/background-color: rgba(0, 0, 0, 0) !important;/*endDM*/">Gender</td>
+  <td width="240"><label for="csex1" class="cbcontainer"><input type="radio" name="csex" id="csex1" value="m" checked="" onclick="shHip('m')"><span class="rbmark"></span>male</label> &nbsp; <label for="csex2" class="cbcontainer"><input type="radio" name="csex" id="csex2" value="f" onclick="shHip('f')"><span class="rbmark"></span>female</label></td>
+</tr>
+<tr>
+  <td width="70">Age</td>
+  <td width="240"><input type="text" name="cage" value="25" class="inlongest" onkeyup="iptfieldCheck(this, 'r', 'pn');"></td>
+</tr>
+</tbody></table>
+<table width="310" id="standardheightweight" style="display: none;">
+<tbody><tr>
+  <td width="70">Weight</td>
+  <td width="240"><input type="text" name="cweightlbs" value="152" class="inlongest inuipound" onkeyup="iptfieldCheck(this, 'r', 'pn');"><span class="inuipoundspan">pounds</span></td>
+</tr>
+<tr>
+  <td width="70">Height</td>
+  <td width="240">
+    <table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+      <input type="text" name="cheightfeet" id="cheightfeet" value="5" class="inlongesthalf inuifoot" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuifootspan">feet</span>
+    </td><td>&nbsp;</td><td>
+      <input type="text" name="cheightinch" id="cheightinch" value="10.5" class="inlongesthalf inuiinch" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuiinchspan">inches</span>
+    </td></tr></tbody></table>
+  </td>
+</tr>
+<tr>
+  <td width="70">Neck</td>
+  <td width="240">
+    <table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+      <input type="text" name="cneckfeet" id="cneckfeet" value="1" class="inlongesthalf inuifoot" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuifootspan">feet</span>
+    </td><td>&nbsp;</td><td>
+      <input type="text" name="cneckinch" id="cneckinch" value="7.5" class="inlongesthalf inuiinch" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuiinchspan">inches</span>
+    </td></tr></tbody></table>
+  </td>
+</tr>
+<tr>
+  <td width="70">Waist</td>
+  <td width="240">
+    <table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td>
+      <input type="text" name="cwaistfeet" id="cwaistfeet" value="3" class="inlongesthalf inuifoot" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuifootspan">feet</span>
+    </td><td>&nbsp;</td><td>
+      <input type="text" name="cwaistinch" id="cwaistinch" value="1.5" class="inlongesthalf inuiinch" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuiinchspan">inches</span>
+    </td></tr></tbody></table>
+  </td>
+</tr>
+<tr>
+  <td width="70"><span id="standardhiplabel" style="display: none;">Hip</span></td>
+  <td width="240">
+    <table border="0" cellpadding="0" cellspacing="0" id="standardhiptable" style="display: none;"><tbody><tr><td>
+      <input type="text" name="chipfeet" id="chipfeet" value="2" class="inlongesthalf inuifoot" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuifootspan">feet</span>
+    </td><td>&nbsp;</td><td>
+      <input type="text" name="chipinch" id="chipinch" value="10.5" class="inlongesthalf inuiinch" onkeyup="iptfieldCheck(this, '', 'pzn');"><span class="inuiinchspan">inches</span>
+    </td></tr></tbody></table>
+  </td>
+</tr>
+</tbody></table>
+<table width="310" id="metricheightweight" style="display: block;">
+<tbody><tr>
+  <td width="70">Weight</td>
+  <td width="240"><input type="text" name="cweightkgs" value="70" class="inlongest inuick" onkeyup="iptfieldCheck(this, 'r', 'pn');"><span class="inuickspan">kg</span></td>
+</tr>
+<tr>
+  <td width="70">Height</td>
+  <td width="240"><input type="text" name="cheightmeter" id="cheightmeter" value="178" class="inlongest inuick" onkeyup="iptfieldCheck(this, 'r', 'pn');"><span class="inuickspan">cm</span></td>
+</tr>
+<tr>
+  <td width="70">Neck</td>
+  <td width="240"><input type="text" name="cneckmeter" id="cneckmeter" value="50" class="inlongest inuick" onkeyup="iptfieldCheck(this, 'r', 'pn');"><span class="inuickspan">cm</span></td>
+</tr>
+<tr>
+  <td width="70">Waist</td>
+  <td width="240"><input type="text" name="cwaistmeter" id="cwaistmeter" value="96" class="inlongest inuick" onkeyup="iptfieldCheck(this, 'r', 'pn');"><span class="inuickspan">cm</span></td>
+</tr>
+<tr>
+  <td width="70"><span id="metrichiplabel" style="display: none;">Hip</span></td>
+  <td width="240"><span id="metrichiptable" style="display: none;"><input type="text" name="chipmeter" id="chipmeter" value="92" class="inlongest inuick" onkeyup="iptfieldCheck(this, 'r', 'pn');"><span class="inuickspan">cm</span></span></td>
+</tr>
+</tbody></table>
+<table width="310">
+<tbody><tr>
+  <td align="center" style="padding: 8px;">
+ <a href="https://www.calculator.net/body-fat-calculator.html"><input type="button" value="Calculate" alt="Calculate"></td></a>
+
+</tr>
+</tbody></table>
+
+
+           
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Services Section ======= -->
+
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-9 text-center text-lg-left">
+            <h3>HIMANSHU FITNESS CHALLENGE</h3>
+           
+          </div>
+          <div>
+
+            <i style="
+            color:green;
+            font-size: 50px;
+            float:center" class="ri-phone-line">
+            </i>
+        
+            <p> 8295520122 </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
+    <br>
+
+    
+  
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="text-center title">
+          <h3>What we have achieved so far</h3>
+          <p>Iusto et labore modi qui sapiente xpedita tempora et aut non ipsum consequatur illo.</p>
+        </div>
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">232</span>
+            <p>Clients</p>
+          </div>
+
+      
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1,463</span>
+            <p>Hours Of Support</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">15</span>
+            <p>Hard Workers</p>
+          </div>
+             <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">10</span>
+            <p>Total Batches</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Gallery</h2>
+          <p>दोस्तों अगर अपने आप को तरासना हैं तो खुद का Best Version बनिए और उसे लगातार निखारते रहिये| वर्कआउट से ही शरीर स्वस्थ रहता हैं जो जीवन को बड़ा देता हैं|</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+           
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" class="img-fluid" alt="">
+           
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}" class="img-fluid" alt="">
+          
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" class="img-fluid" alt="">
+           
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}" class="img-fluid" alt="">
+          
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}" class="img-fluid" alt="">
+          
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}" class="img-fluid" alt="">
+          
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">
+            
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">
+           
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt="">
+           
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Pricing & timing</h2>
+          <p> एक  सपना  जादू से  हकीकत  नहीं  बन  सकता  ; इसमें  पसीना , दृढ  संकल्प   और  कड़ी  मेहनत  लगती  है .</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="box">
+              <h3>Payment</h3>
+              <h4>Membership Packages</h4>
+           
+              <div class="btn-wrap">
+                <a href="inner-page.html" class="btn-buy">payment</a>
+
+              </div>
+            
+          
+            <div class="col-sm-4>
+            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+
+          </div>
+           
+      
+      
+           
+          </div>
+          
+
+
+         
+              
+              
+            </div>
+          </div>
+
+         
+          </div>
+
+        </div>
+
+      </div>
+ <img src="assets/img/timing.jpeg" class="img-fluid" alt="Responsive image" style="
+    margin-top: 12px;
+">
+
+              <img src="assets/img/packege.jpeg" class="img-fluid" alt="Responsive image"
+              style="margin-top: 12px">
+       
+    </section><!-- End Pricing Section -->
+
+    <!-- ======= Faq Section ======= -->
+   
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+        
+        </div>
+      </div>
+
+      <div>
+        
+      </div>
+
+      <div class="container">
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="ri-map-pin-line"></i>
+                <h4>Location:</h4>
+                <p>: POLICE STATION, SCO - 144 , BASEMENT , SECTOR 13-17 HUDA ( OPP. WOMEN, Panipat, Haryana 132103</p>
+              </div>
+
+              <div class="email">
+                <i class="ri-mail-line"></i>
+                <h4>Email:</h4>
+                <p>himanshu.chughpnp@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="ri-phone-line"></i>
+                <h4>Call:</h4>
+                <p>8295520122</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>SBT Professionals</h3>
+      <p>Head Office : Gurugram Branch Office : Karnal / Panipat / Kaithal / Ambala / Zirakpur / Panchkula.</p>
+      <div class="social-links">
+        <a href="https://www.twitter.com/SBTProfessionals/" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/SBTProfessionals/" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/SBTProfessionals/" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>SBT Professionals</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+       
+        Designed by <a href="https://www.sbtprofessionals.com/sbt/">SBT Professionals</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
