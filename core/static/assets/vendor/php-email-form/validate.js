@@ -90,10 +90,22 @@ jQuery(document).ready(function($) {
       }
     });
     if (ferror) return false;
-    else var str = $(this).serialize();
-
-    var this_form = $(this);
+    else var str = $(this).serializeArray();
+    var this_form = $(this);    
     var action = $(this).attr('action');
+    var data = {};
+    alert(str.length)
+    var i;
+    for(i=0; i<str.length; i++){
+      data[str[i].name] = str[i].value;
+    }
+    for(i=0; i<str.length; i++)
+    {
+      console.log(data['name']);
+      console.log(data['email']);
+      console.log(data['subject']);
+      console.log(data['description']);
+    }
 
     if( ! action ) {
       this_form.find('.loading').slideUp();
@@ -108,15 +120,22 @@ jQuery(document).ready(function($) {
     $.ajax({
       type: "POST",
       url: action,
-      data: str,
+      data: {
+            'name':data['name'], 
+            'email':data['email'],
+            'subject':data['subject'],
+            'description': data['description'],
+            'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').attr('value')
+            },
       success: function(msg) {
-        if (msg == 'OK') {
+      alert(msg.status)
+        if (msg.status == 'OK') {
           this_form.find('.loading').slideUp();
           this_form.find('.sent-message').slideDown();
           this_form.find("input:not(input[type=submit]), textarea").val('');
         } else {
           this_form.find('.loading').slideUp();
-          this_form.find('.error-message').slideDown().html(msg);
+          this_form.find('.error-message').slideDown().html(msg.status);
         }
       }
     });

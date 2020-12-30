@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-   <title>himanshu fitness </title>
+  <title>himanshu fitness </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -15,7 +15,9 @@
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -53,11 +55,11 @@
             <ul>
               <li class="active"><a href="index.html">Home</a></li>
               <li><a href="#about">About</a></li>
-            
+
               <li><a href="#portfolio">Gallery</a></li>
               <li><a href="#pricing">Pricing & timing</a></li>
-             
-              
+
+
               <li><a href="#contact">Contact</a></li>
 
             </ul>
@@ -76,58 +78,43 @@
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
-    <body>
-  <div class="wrapper">
-    <div class="payment">
-      <h2> Payment Gateway</h2>
-      <div class="form">
-        <div class="">
+        <body>
+          <div class="wrapper">
+            <div class="payment">
+              <h2> Payment Gateway</h2>
+              <div class="form">
+                <form id="form" method="POST" action="{% url 'purchase-membership' plan_id%}">
+                  <div class="">
 
-          <label class="labe1"><Card name :</label>
-          <input type="text" class="input" name="card_name" placeholder="Name">
-        </div>
-         <div class="">
+                    <label class="labe1">
+                      <Card name :</label>
+                        <input type="text" class="input" name="name" placeholder="Name">
+                  </div>
+                  <div class="">
+                    {% csrf_token %}
+                    <label class="labe1">Phone number:</label>
 
-          <label class="labe1">Phone number:</label>
-
-          <input type="text" class="input" name="card_number" placeholder="99999-88888" data-mask="99999-99999">
-      <img src="{% static 'assets/img/user.svg' %}" style="
+                    <input type="text" class="input" name="phno" placeholder="99999-88888"
+                      data-mask="99999-99999">
+                    <img src="{% static 'assets/img/user.svg' %}" style="
     width: 15px;
     margin-top: -70px;
     margin-left: -261px;
     position: absolute;
 ">
-<div class="">
+                    <div class="">
 
-          <label class="labe1">E-mail:</label>
+                      <label class="labe1">E-mail:</label>
 
-          <input type="text" class="input" name="E-mail" placeholder="example@gmail.com">
-        </div>
-      </div>
-        <!--<div class="card-grp space">
-          <div class="card-item">
-          <label class="labe1">E-mail:</label>
-          <input type="text" class="input" name="expiry_date" placeholder="00 / 00" data-mask="00 / 00">
-        </div>
-          <!--<div class="card-item">
-          <label class="labe1">CVC:</label>
-          <input type="text" class="input" name="cvc" placeholder="000" data-mask="000">
-        </div> 
+                      <input type="text" class="input" name="email" placeholder="example@gmail.com">
+                    </div>
+                  </div>
+                  <a href="javascript:;" onclick="document.getElementById('form').submit();" class="get-started-btn scrollto" style="margin-top: 24px;margin-left: 85px;">Payment</a>
+                </form>
+              </div>
+            </div>
 
-      </div>-->
-        <div class="">
-
-          <label class="labe1">Total Payment:</label>
-          <input type="text" class="input" name="card_number" placeholder="">
-        </div>
-<a href="{% url 'purchase-membership' %}" class="get-started-btn scrollto" style="
-    margin-top: 24px;
-    margin-left: 85px;
-">Payment</a>
-    </div>
-        </div>
-
-      </div>
+          </div>
     </section><!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
@@ -135,24 +122,24 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-     <div class="container">
-      <h3>SBT Professionals</h3>
-      <p>Head Office : Gurugram Branch Office : Karnal / Panipat / Kaithal / Ambala / Zirakpur / Panchkula.</p>
-      <div class="social-links">
-        <a href="https://www.twitter.com/SBTProfessionals/" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/SBTProfessionals/" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="https://www.instagram.com/SBTProfessionals/" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        
+      <div class="container">
+        <h3>SBT Professionals</h3>
+        <p>Head Office : Gurugram Branch Office : Karnal / Panipat / Kaithal / Ambala / Zirakpur / Panchkula.</p>
+        <div class="social-links">
+          <a href="https://www.twitter.com/SBTProfessionals/" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.facebook.com/SBTProfessionals/" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/SBTProfessionals/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+
+        </div>
+        <div class="copyright">
+          &copy; Copyright <strong><span>SBT Professionals</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+          Designed by <a href="https://www.sbtprofessionals.com/sbt/">SBT Professionals</a>
+        </div>
       </div>
-      <div class="copyright">
-        &copy; Copyright <strong><span>SBT Professionals</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-       
-        Designed by <a href="https://www.sbtprofessionals.com/sbt/">SBT Professionals</a>
-      </div>
-    </div>
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
@@ -172,8 +159,7 @@
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
   <script src="https:"></script>
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </body>
 

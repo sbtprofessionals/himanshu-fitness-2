@@ -1,131 +1,67 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
+from django.urls import reverse
+from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
-
+from .models import MemeberShipPayment, MemeberShipRequest
+from .paytm import CheckSum
+from django.core.mail import send_mail
+import random
+import json
+import requests
+MID = "VdMxPH61970223458566"  # MERCHANT ID
+MKEY = "1xw4WBSD%bD@ODkL"  # MERCHANT KEY
 
 def index(request):
+    obj = MemeberShipRequest.objects.all()
+
+    print('............',obj)
+    # MemeberShipRequest.objects.all().delete()
     return render(request, 'index.html')
 
 def payment(request):
-    return render(request, 'payment-form.html')
+    return render(request, 'payment-form.html',{'plan_id':0})
 
 
-def purchase_customer(request, slug):# plan_id, user, amount,discount,role):
-    category = Categories.objects.all()
-
-    plan = Plan.objects.get(plan_id =slug)
-    dict_for_review = {
-        'id' : plan.plan_id,
-        'name': plan.plan_name,
-        'amount': plan.plan_amount,
-        'description_1': plan.description_1,
-        'description_2': plan.description_2,
-        'description_3': plan.description_3,
-        'description_4': plan.description_4,
-    }
-    return render(request, 'website/forms/purchase_form_customer.html', {'plan': plan, 'plan_review': dict_for_review, 'category': category})
 
 def purchase_membership(request, plan_id):
+    try:
+        if request.method == 'GET':
+            return HttpResponse({'soome sort of error'})
 
-    if request.method == 'POST':
+        name = 'test'#request.POST.get('name')
+        phno = '8708046736'#request.POST.get('phno')
+        email = 'test@test.com'#request.POST.get('email')
+        order_id = str(random.randint(0,9999))
+        obj = MemeberShipRequest(name = name, phone=phno, email=email, order_id=order_id)
+        obj.save()
+        # sending details to paytm gateway in form of dict
+        detail_dict = {
+            "MID": MID,
+            "WEBSITE": "WEBSTAGING",
+            "INDUSTRY_TYPE_ID": "Retail",
+            "CUST_ID": str(email),
+            "CHANNEL_ID": "WEB",
+            "ORDER_ID": order_id,
+            "TXN_AMOUNT": "1234",
+            "CALLBACK_URL": f'http://127.0.0.1:8000/paytm_request_handler',
+        }   
+        param_dict = detail_dict
+        CheckSum.generateSignature
+        param_dict['CHECKSUMHASH'] = CheckSum.generateSignature(
+        detail_dict, MKEY)
 
-        if request.user.is_authenticated:
-            is_vendor = request.POST.get('is_vendor')
-            discount = request.POST.get('discount')
-            plan = Plan.objects.get(plan_id = plan_id)
-            customer = Customer()
-            customer.user = request.user
-            # customer.customer_id = models.
-            #
-            #
-            #
-            # (primary_key=True)
-            customer.customer_name = request.POST.get('name')
-            customer.last_name = 'Paliwal'
-            customer.Address = request.POST.get('address')
-            customer.city = request.POST.get('city')
-            customer.state = request.POST.get('state')
-            customer.zipcode = request.POST.get('zip_code')
-            customer.EmailID = request.POST.get('email_id')
-            customer.joining_date = timezone.datetime.now()
-            customer.gender = 'Alpha Male'
-            customer.extra_Info = 'got need a card to swipe'
-            customer.Contact_Person = 'GEAZY'
-            customer.customer_is_active = True
-            customer.subscription_plan_taken = plan
-
-            customer.save()
-            user = User.objects.filter(id=request.user.id).first()
-            phone = user.phone
-            try:
-                plan = Plan.objects.get(plan_id=plan_id)
-            except:
-                return HttpResponse('Please enter a valid Plan Id')
-
-            try:
-                discount = int(request.POST.get('discount'))
-            except ValueError:
-                return HttpResponse('Please select a valid discount value')
-
-            user_amount= plan.plan_amount
-            if discount != "" and discount != None:
-                response_dict = discount_validation(plan_id, discount, user_amount, is_vendor)
-                if response_dict['error'] != None:
-                    return HttpResponse(response_dict['error'])
-                amount = discount * plan.plan_amount
-            else:
-                amount = plan.plan_amount
-
-            order_id = random.randint(1, 999999)
-            email_id = request.POST.get('email_id')
-            name = request.POST.get('name')
-            address =request.POST.get('address')
-            state =  request.POST.get('state')
-            city = request.POST.get('city')
-            zip_code = request.POST.get('zip_code')
-            plan_id = plan.plan_id
-
-            # Check if user not provide any discount value
-            order = Order(name=name, user=user, phone=phone, address=address, city=city,
-                            state=state, zip_code=zip_code, amount=amount, discount=discount,order_id=order_id, plan_id=plan, order_completed=False,role='customer')
-            order.save()
-
-            # sending details to paytm gateway in form of dict
-            detail_dict = {
-                "MID": parameters['merchant_id'],
-                "WEBSITE": "WEBSTAGING",
-                "INDUSTRY_TYPE_ID": "Retail",
-                "CUST_ID": str(email_id),
-                "CHANNEL_ID": "WEB",
-                "ORDER_ID": str(order_id),
-                "TXN_AMOUNT": str(amount),
-                "CALLBACK_URL": f'{parameters["BASE_URL"]}/sbt/req_handler',
-            }
-
-            param_dict = detail_dict
-            CheckSum.generateSignature
-            param_dict['CHECKSUMHASH'] = CheckSum.generateSignature(
-                detail_dict, parameters['merchant_key'])
-            # print('.................', param_dict)
-            return render(request, 'redirect.html', {'detail_dict': param_dict})
-
-        return HttpResponse('Either amount or Discount not Matched')
-    return render(request, 'checkout2.html', {'plan': plan})  # for checkout
-    # except Exception as e:
-    #     print("An Exception occur \n", e)
-    #     return HttpResponse(e)
-
+        return render(request, 'redirect.html', {'detail_dict': param_dict})
+    except:
+        return HttpResponse('An UnExpected Error Occured')
 
 @csrf_exempt
 def req_handler(request):
     if request.method == 'POST':
         response_dict = dict()
         form = request.POST
-        role = {
-        'customer': 'customer',
-        'vendor': 'vendor',
-            }
         # another if to handle if user load refresh
-        is_order_exist = Order_Payment.objects.filter(order_id=form["ORDERID"]).exists()
+        is_order_exist = MemeberShipPayment.objects.filter(order_id=form["ORDERID"]).exists()
         if is_order_exist == False:
             # FOR ALL VALUES
             for i in form.keys():
@@ -133,14 +69,13 @@ def req_handler(request):
                 if i == "CHECKSUMHASH":
                     response_check_sum = form[i]
 
-            verify = CheckSum.verifySignature(response_dict, parameters['merchant_key'], response_check_sum)
+            verify = CheckSum.verifySignature(response_dict, MKEY, response_check_sum)
             # response_dict["STATUS"] = "PENDING"
-            if verify and response_dict["STATUS"] != "TXN_FAILURE" or response_dict["STATUS"] == "PENDING":
-                order_payment = Order_Payment()
-                usr = User
-                # id = models.AutoField(primary_key = True)
-                order = Order.objects.get(order_id=response_dict["ORDERID"])
 
+            if(verify and response_dict["STATUS"] != "TXN_FAILURE") or (verify and response_dict["STATUS"] == "PENDING"):
+                order_payment = MemeberShipPayment()
+                # id = models.AutoField(primary_key = True)
+                order = MemeberShipRequest.objects.get(order_id=response_dict["ORDERID"])
 
                 order_payment.order_summary = order
                 # paytm responses
@@ -165,79 +100,80 @@ def req_handler(request):
                 order_payment.txn_date = response_dict["TXNDATE"]
                 # order_payment.refund_amount =  #  0.00
                 order_payment.save()
-                payment_status = Order_Payment.objects.get(
-                    order_id=response_dict["ORDERID"])
-
-                if order.role == 'customer':
-                    user = order_payment.order_summary.user
-                    user.is_customer_paid =True
-                    user.customer_discount = order.discount
-                    user.save()
-                    customer = Customer.objects.filter(user=user).first()
-                    customer.subscription_plan_taken = order_payment.order_summary.plan_id
-                    customer.save()
-                else:
-                    user = order_payment.order_summary.user
-                    user.is_vendor_paid = True
-                    user.save()
-                    vendor = Vendor.objects.filter(user=user).first()
-                    vendor.registration_fee = order_payment.order_summary.plan_id
-                    vendor.save()
-
-                return render(request, 'ordersucess.html', {'payment': payment_status})
+                order_id=response_dict["ORDERID"]
+                return HttpResponse({f'Order Successfully Placed. <a href="{reverse("home")}">Go back to home</a>'})
             else:
-                Order.objects.filter(
+                MemeberShipRequest.objects.filter(
                     order_id=response_dict["ORDERID"]).delete()
-                return HttpResponse('Order is not Placed Because of some error. Please <a href="/sbt/">Try Again </a>')
+                print(MemeberShipRequest.objects.all())
+                return HttpResponse(f'Order is not Placed Because of some error. Please <a href="{reverse("payment")}">Try Again </a>')
         else:
-            payment_status = Order_Payment.objects.get(
-                order_id=form["ORDERID"])
-            # Session should create when order is get successfull
-
-            return HttpResponse('Your payment  failed')
+            return HttpResponse(f'''Already Placed Order, check your order by typing your Id here 
+                                <form method="POST" action="{reverse('order-status')}">
+                                    <input type="hidden" name="csrfmiddlewaretoken" value="{get_token(request)}">
+                                    Enter Here<input name="order-id"></input>
+                                    <button>Submit</button>
+                                </form>
+                                ''')
     return HttpResponse('Invalid Request')
 
 
-def order_status(request, slug):
+def order_status(request):
     try:
-        obj = Order_Payment.objects.get(order_id=slug)
-        obj2 = obj.order_summary
-        if obj2.user == request.user:
-            paytmParams = dict()
+        if request.method =='POST':
+            slug = request.POST.get('order-id')
+            if MemeberShipRequest.objects.filter(order_id = slug).exists():
+                paytmParams = dict()
+                
+                paytmParams["MID"] = MID
+                paytmParams["ORDERID"] = slug
+                
+                checksum = CheckSum.generateSignature(paytmParams, MKEY)
 
-            paytmParams["MID"] = parameters['merchant_id']
-            paytmParams["ORDERID"] = slug
+                paytmParams["CHECKSUMHASH"] = checksum
 
-            checksum = CheckSum.generateSignature(paytmParams, parameters['merchant_key'])
+                post_data = json.dumps(paytmParams)
 
-            paytmParams["CHECKSUMHASH"] = checksum
+                # for Staging
+                url = "https://securegw-stage.paytm.in/order/status"
 
-            post_data = json.dumps(paytmParams)
+                # for Production
+                # url = "https://securegw.paytm.in/order/status"
 
-            # for Staging
-            url = "https://securegw-stage.paytm.in/order/status"
-
-            # for Production
-            # url = "https://securegw.paytm.in/order/status"
-
-            response = requests.post(url, data=post_data, headers={
-                                     "Content-type": "application/json"}).json()
-
-            if response["STATUS"] == "TXN_SUCCESS":
-                obj = Order_Payment.objects.get(order_id=slug)
-                obj.status = response["STATUS"]
-                obj.response_code = response["RESPCODE"]
-                obj.response_message = response["RESPMSG"]
-                obj.txn_date = response["TXNDATE"]
-                obj.bank_name = response["BANKNAME"]
-                obj.save()
-                return HttpResponse("order success fully placed")
-
-            return HttpResponse("order is still in pending state")
-
-        elif request.user != None and request.user.is_authenticated:
-            return HttpResponse("Please insert correct orderid")
-        else:
-            return HttpResponse('Please Login <a href="/sbt/login"> Here First</a>')
+                response = requests.post(url, data=post_data, headers={
+                                            "Content-type": "application/json"}).json()
+                
+                if response["STATUS"] == "TXN_SUCCESS":
+                    obj = MemeberShipPayment.objects.get(order_id=slug)
+                    obj.status = response["STATUS"]
+                    obj.response_code = response["RESPCODE"]
+                    obj.response_message = response["RESPMSG"]
+                    obj.txn_date = response["TXNDATE"]
+                    obj.bank_name = response["BANKNAME"]
+                    obj.save()
+                    return HttpResponse(f"order success fully placed")
+                return HttpResponse("order is still in pending state")
+            return HttpResponse("Invalid Request")
+        return render(request ,'form.html')
     except Exception as e:
-        return HttpResponse(f"Requested Order Not Found - {e}")  # form to type in order id"""
+        return HttpResponse(f"Requested Order Not Found")
+
+
+def contact_via_mail(request):
+    if request.method == 'POST':
+        if request.is_ajax():
+
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            description = request.POST.get('description')
+            
+            send_mail(
+                    subject=subject,
+                    message=f'from : {email} name : {name}<br>, {description}',
+                    from_email="rk7305758@gmail.com",
+                    recipient_list=["paliwalap7@gmail.com",],
+                    fail_silently=False,
+                )
+            return JsonResponse({'status': 'OK'})
+    return JsonResponse({'status':'An Error Occured !'})

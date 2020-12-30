@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      {% load static %}
+
+      <title>Show Payment Page</title>
+      <link rel="stylesheet" href="{%static 'website/css/style.css' %}" >
+   </head>
+   <body onload="myFunction()">
+
+      {% comment %} <div id="loading"></div>     {% endcomment %}
+        <center>
+            Redirecting you to payment page ...
+         <strong>Please do not refresh this page!</strong>
+      </center>
+      <form method="post"  action="https://securegw-stage.paytm.in/order/process" name="paytm">
+         <table border="1">
+            <tbody>
+                {% for key, value in detail_dict.items%}
+               <input type="hidden" name="{{ key }}" value="{{ value }}">
+                {% endfor %}
+            </tbody>
+         </table>
+         <script type="text/javascript"> document.paytm.submit(); </script>
+      </form>
+      {% comment %} <script>
+         var preloader = document.getElementById("loading");
+         function myFunction(){
+           preloader.style.display = 'none';
+         };
+       </script> {% endcomment %}
+     
+   </body>
+</html>
