@@ -92,20 +92,7 @@ jQuery(document).ready(function($) {
     if (ferror) return false;
     else var str = $(this).serializeArray();
     var this_form = $(this);    
-    var action = $(this).attr('action');
-    var data = {};
-    alert(str.length)
-    var i;
-    for(i=0; i<str.length; i++){
-      data[str[i].name] = str[i].value;
-    }
-    for(i=0; i<str.length; i++)
-    {
-      console.log(data['name']);
-      console.log(data['email']);
-      console.log(data['subject']);
-      console.log(data['description']);
-    }
+    var action = $(this).attr('action');    
 
     if( ! action ) {
       this_form.find('.loading').slideUp();
@@ -128,7 +115,6 @@ jQuery(document).ready(function($) {
             'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').attr('value')
             },
       success: function(msg) {
-      alert(msg.status)
         if (msg.status == 'OK') {
           this_form.find('.loading').slideUp();
           this_form.find('.sent-message').slideDown();

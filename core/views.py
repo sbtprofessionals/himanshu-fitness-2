@@ -170,9 +170,9 @@ def contact_via_mail(request):
             
             send_mail(
                     subject=subject,
-                    message=f'from : {email} name : {name}<br>, {description}',
+                    message=f'from : {email} name : {name}, {description}',
                     from_email="rk7305758@gmail.com",
-                    recipient_list=["paliwalap7@gmail.com",],
+                    recipient_list=["paliwalap7@gmail.com","somanshsingh86@yahoomail.com.sg"],
                     fail_silently=False,
                 )
             return JsonResponse({'status': 'OK'})
